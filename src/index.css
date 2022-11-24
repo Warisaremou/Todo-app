@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.check-btn {
+  @apply text-2xl md:text-3xl bg-slate-400 text-white cursor-pointer border rounded-full;
+}
+
+.check-btn:hover {
+  border-color: red;
+  @apply transition-colors ease-in duration-200;
+}
+
+.clear-btn {
+  @apply text-2xl md:text-3xl text-gray-600 cursor-pointer;
+}
