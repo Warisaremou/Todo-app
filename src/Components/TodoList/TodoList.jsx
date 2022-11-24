@@ -1,6 +1,6 @@
 import React from 'react'
 import { Check } from "react-bootstrap-icons"
-// import { Home } from "react-bootstrap-icons"
+import { XLg } from "react-bootstrap-icons"
 
 function TodoList({ todo, setTodo }) {
     return (
@@ -12,7 +12,7 @@ function TodoList({ todo, setTodo }) {
                             <Check className='check-btn' />
                             <p className='text-gray-700 md:text-lg pl-5'>{myTodo.charAt(0).toUpperCase() + myTodo.slice(1)}</p>
                         </div>
-                        <Check className='clear-btn' />
+                        <XLg className='clear-btn' />
                     </div>
                 </div>
             ))}
