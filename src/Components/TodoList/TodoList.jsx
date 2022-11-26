@@ -3,10 +3,11 @@ import { Check } from "react-bootstrap-icons"
 import { XLg } from "react-bootstrap-icons"
 
 function TodoList({ todo, setTodo }) {
+
     return (
         <div className='bg-white rounded-lg shadow-lg'>
             {todo.map((myTodo, index) => (
-                <div key={`${myTodo}-${index}`} className="todo py-5 border-b-2">
+                <div key={`${myTodo}-${index}`} className="todo py-5 border-b-2 my-todo">
                     <div className="px-3 flex justify-between items-center">
                         <div className='flex items-center'>
                             <Check className='check-btn' />
