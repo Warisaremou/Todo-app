@@ -25,7 +25,7 @@ function Header({ inputValue, setInputValue, setTodo, theme, setTheme }) {
             <div className="text-2xl md:text-4xl text-white flex justify-between mb-9 items-center">
                 <h3 className='font-extrabold tracking-widest'>TODO</h3>
                 {theme === 'light' ? (
-                    <BrightnessLowFill className="cursor-pointer toogle-btn" onClick={handleThemeSwitch} />
+                    <BrightnessLowFill className="cursor-pointer text-3xl toogle-btn" onClick={handleThemeSwitch} />
                 ) : (
                     <MoonFill className="cursor-pointer md:text-3xl toogle-btn" onClick={handleThemeSwitch} />
                 )}
