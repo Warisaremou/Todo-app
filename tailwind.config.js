@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
-      caudex: ["Caudex, serif"],
+      josefin: ["Josefin Sans, sans-serif"],
     },
   },
   plugins: [],
