@@ -14,7 +14,7 @@
 }
 
 .check-btn {
-  @apply relative text-2xl md:text-3xl text-white cursor-pointer border rounded-full hover:border-active-option transition-colors ease-in duration-200;
+  @apply relative text-2xl md:text-3xl text-transparent cursor-pointer border dark:border-gray-700 rounded-full hover:border-active-option dark:hover:border-active-option transition-colors ease-in duration-200;
 }
 
 .check-btn:focus {
