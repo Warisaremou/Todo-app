@@ -6,9 +6,13 @@ function Header({ inputValue, setInputValue, setTodo, theme, setTheme }) {
 
     function keyPressed(e) {
         if (e.keyCode === 13) {
-            console.log(inputValue)
-            setTodo(currentInput => [...currentInput, inputValue])
-            setInputValue('')
+            if (inputValue === "") {
+                alert('Please enter a todo')
+            } else {
+                setTodo(currentInput => [...currentInput, inputValue])
+                setInputValue('')
+            }
+            // console.log(inputValue)
         }
     }
 
