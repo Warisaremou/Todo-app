@@ -29,6 +29,10 @@
   transition: all 0.5s;
 }
 
+.options{
+  @apply hover:text-dark-gray duration-100 ease-in-out;
+}
+
 @keyframes bounce {
   0% {
     transform: rotate(90deg);
