@@ -1,6 +1,7 @@
 import React from 'react'
 import { Check } from "react-bootstrap-icons"
 import { XLg } from "react-bootstrap-icons"
+import Options from '../Options/Options'
 
 function TodoList({ todo, setTodo }) {
 
@@ -11,12 +12,13 @@ function TodoList({ todo, setTodo }) {
                     <div className="px-3 flex justify-between items-center">
                         <div className='flex items-center'>
                             <Check className='check-btn' />
-                            <p className='text-text-dark dark:text-text-light md:text-lg pl-5 transition ease-in-out duration-100'>{myTodo.charAt(0).toUpperCase() + myTodo.slice(1)}</p>
+                            <p className='text-text-dark dark:text-text-light md:text-xl pl-5 transition ease-in-out duration-100'>{myTodo.charAt(0).toUpperCase() + myTodo.slice(1)}</p>
                         </div>
                         <XLg className='clear-btn' />
                     </div>
                 </div>
             ))}
+            <Options todo={todo} setTodo={setTodo} />
         </div>
     )
 }
