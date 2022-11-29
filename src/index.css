@@ -37,7 +37,7 @@
 }
 
 .main-options{
-  @apply font-semibold absolute top-[85px] left-0 bg-input-dark rounded-lg w-full 
+  @apply md:font-semibold absolute top-[85px] left-0 bg-input-dark rounded-lg w-full 
   py-3 px-8 text-center md:relative md:w-auto md:bottom-0 md:left-0 md:py-0 md:px-0 md:bg-transparent;
 }
 
