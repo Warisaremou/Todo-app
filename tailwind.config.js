@@ -18,6 +18,9 @@ module.exports = {
         'dark-gray': '#4D5066',
         'active-option': '#3A7BFD',
       },
+      inset: {
+        '85px': '85px',
+      }
     },
     fontFamily: {
       josefin: ['Josefin Sans, sans-serif'],
