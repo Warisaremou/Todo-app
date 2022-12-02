@@ -1,20 +1,39 @@
-import React from 'react'
 import { Check } from "react-bootstrap-icons"
 import { XLg } from "react-bootstrap-icons"
 import Options from '../Options/Options'
+import { useState } from "react"
 
 function TodoList({ todo, setTodo }) {
+
+    const [isCompleted, setIsCompleted] = useState(false)
+    // const [completedTodo, setCompletedTodo] = useState([])
+
+    function markAsCompleted(e) {
+        const dataIndex = e.target.dataset.index
+        console.log(dataIndex)
+        // if (dataIndex === Todo.id) {
+        //     isCompleted ? setIsCompleted(false) : setIsCompleted(true)
+        // }
+    }
+
+    function deleteTodo(index) {
+        setTodo(currentTodo => {
+            return currentTodo.filter((_, i) => i !== index)
+        })
+    }
 
     return (
         <div className='bg-white dark:bg-input-dark rounded-lg shadow-lg shadow-light-shadow dark:shadow-dark-shadow'>
             {todo.map((myTodo, index) => (
-                <div key={`${myTodo}-${index}`} className="todo py-5 border-b-2 dark:border-text-dark my-todo">
+                <div key={index} className="todo py-5 border-b-2 dark:border-text-dark my-todo">
                     <div className="px-3 flex justify-between items-center">
                         <div className='flex items-center'>
-                            <Check className='check-btn' />
-                            <p className='text-text-dark dark:text-text-light md:text-xl pl-5 transition ease-in-out duration-100'>{myTodo.charAt(0).toUpperCase() + myTodo.slice(1)}</p>
+                            <Check data-index={`${index}`} className={`check-btn ${isCompleted ? 'completed' : null}`} onClick={markAsCompleted} />
+                            <p className={`todo-content ${isCompleted ? 'line-through' : null}`}>
+                                {myTodo.charAt(0).toUpperCase() + myTodo.slice(1)}
+                            </p>
                         </div>
-                        <XLg className='clear-btn' />
+                        <XLg className='clear-btn' onClick={() => deleteTodo(index)} />
                     </div>
                 </div>
             ))}

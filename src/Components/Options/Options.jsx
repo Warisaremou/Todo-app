@@ -14,7 +14,7 @@ function Options({ todo, setTodo }) {
                 <button className='px-5 options'>Active</button>
                 <button className='options'>Completed</button>
             </div>
-            <button className='options' onClick={clearAllTodo}>Clear Completed</button>
+            <button className='options' onClick={clearAllTodo}>Clear All</button>
         </div>
     )
 }
