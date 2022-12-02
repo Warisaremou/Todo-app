@@ -10,9 +10,9 @@ function TodoList({ todo, setTodo }) {
   function markAsCompleted(e) {
     const dataIndex = e.target.dataset.index;
     console.log(dataIndex);
-    // if (dataIndex === Todo.id) {
-    //     isCompleted ? setIsCompleted(false) : setIsCompleted(true)
-    // }
+    if (dataIndex === "1") {
+      isCompleted ? setIsCompleted(false) : setIsCompleted(true);
+    }
   }
 
   function deleteTodo(index) {
@@ -43,7 +43,9 @@ function TodoList({ todo, setTodo }) {
                 {myTodo.charAt(0).toUpperCase() + myTodo.slice(1)}
               </p>
             </div>
-            <XLg className="clear-btn" onClick={() => deleteTodo(index)} />
+            <div onClick={() => deleteTodo(index)}>
+              <XLg className="clear-btn" />
+            </div>
           </div>
         </div>
       ))}
