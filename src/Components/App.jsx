@@ -1,26 +1,9 @@
 import Header from "./Header/Header";
 import TodoList from "./TodoList/TodoList";
 import { useState, useEffect } from "react";
-import mobileBg from "../Images/bg-mobile-light.jpg";
-import desktopBg from "../Images/bg-desktop-light.jpg";
-import MatchMediaWrapper from "../js/MatchMediaWrapper";
+import Backgroud from "./Backgroud";
 
 function App() {
-  const mobileBackground = (
-    <img
-      src={mobileBg}
-      alt="mobile-bg"
-      className="absolute top-0 left-0 right-0 -z-10 w-full"
-    />
-  );
-  const desktopBackground = (
-    <img
-      src={desktopBg}
-      alt="Desktop-bg"
-      className="absolute top-0 left-0 right-0 -z-10 w-full"
-    />
-  );
-
   const savedTodo = localStorage.getItem("todos");
   const savedThemes = localStorage.getItem("themes");
   const [inputValue, setInputValue] = useState("");
@@ -54,10 +37,7 @@ function App() {
         <TodoList todo={todo} setTodo={setTodo} />
       </div>
       <div className="layout">
-        <MatchMediaWrapper
-          mobileBackground={mobileBackground}
-          desktopBackground={desktopBackground}
-        />
+        <Backgroud theme={theme} />
       </div>
       <div className="app-bg"></div>
     </div>
