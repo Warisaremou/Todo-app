@@ -1,7 +1,7 @@
 import Header from "./Header/Header";
 import TodoList from "./TodoList/TodoList";
 import { useState, useEffect } from "react";
-import Backgroud from "./Backgroud";
+import Background from "./Background";
 
 function App() {
   const savedTodo = localStorage.getItem("todos");
@@ -37,7 +37,7 @@ function App() {
         <TodoList todo={todo} setTodo={setTodo} />
       </div>
       <div className="layout">
-        <Backgroud theme={theme} />
+        <Background theme={theme} />
       </div>
       <div className="app-bg"></div>
     </div>
