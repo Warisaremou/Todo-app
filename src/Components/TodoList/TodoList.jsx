@@ -7,11 +7,18 @@ function TodoList({ todo, setTodo }) {
   const [isCompleted, setIsCompleted] = useState(false);
   // const [completedTodo, setCompletedTodo] = useState([])
 
-  function markAsCompleted(e) {
-    const dataIndex = e.target.dataset.index;
-    console.log(dataIndex);
-    if (dataIndex === "1") {
-      isCompleted ? setIsCompleted(false) : setIsCompleted(true);
+  function markAsCompleted(e, index) {
+    const dataIndex = e.currentTarget.dataset.index;
+    console.log(dataIndex, index);
+    console.log(e);
+    if (dataIndex == index) {
+      // if (e.currentTarget.classList.contains("completed")) {
+      //   console.log("yes");
+      //   e.currentTarget.classList.add('completed')
+      // } else {
+      //   console.log("no");
+      // }
+      isCompleted ? setIsCompleted(false) : setIsCompleted(true)
     }
   }
 
@@ -26,6 +33,7 @@ function TodoList({ todo, setTodo }) {
       {todo.map((myTodo, index) => (
         <div
           key={index}
+          data-index={index}
           className="todo py-5 border-b-2 dark:border-text-dark my-todo"
         >
           <div className="px-3 flex justify-between items-center">
@@ -33,7 +41,7 @@ function TodoList({ todo, setTodo }) {
               <Check
                 data-index={`${index}`}
                 className={`check-btn ${isCompleted ? "completed" : null}`}
-                onClick={markAsCompleted}
+                onClick={(e) => markAsCompleted(e, index)}
               />
               <p
                 className={`todo-content ${
