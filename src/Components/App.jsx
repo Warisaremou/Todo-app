@@ -22,9 +22,12 @@ function App() {
   );
 
   const savedTodo = localStorage.getItem("todos");
+  const savedThemes = localStorage.getItem("themes");
   const [inputValue, setInputValue] = useState("");
   const [todo, setTodo] = useState(savedTodo ? JSON.parse(savedTodo) : []);
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(
+    savedThemes ? JSON.parse(savedThemes) : "light"
+  );
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todo));
@@ -35,6 +38,7 @@ function App() {
     } else {
       document.documentElement.classList.remove("dark");
     }
+    localStorage.setItem("themes", JSON.stringify(theme));
   }, [theme]);
 
   return (
