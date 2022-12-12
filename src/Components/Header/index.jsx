@@ -1,6 +1,4 @@
-import React from "react";
-import { BrightnessLowFill } from "react-bootstrap-icons";
-import { MoonFill } from "react-bootstrap-icons";
+import { BrightnessLowFill, MoonFill } from "react-bootstrap-icons";
 
 function Header({ inputValue, setInputValue, setTodo, theme, setTheme }) {
   function keyPressed(e) {

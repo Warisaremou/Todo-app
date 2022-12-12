@@ -1,5 +1,3 @@
-import React from "react";
-
 function Options({ todo, setTodo }) {
   const clearAllTodo = () => {
     setTodo([]);

@@ -1,6 +1,6 @@
-import Header from "./Header/Header";
-import TodoList from "./TodoList/TodoList";
 import { useState, useEffect } from "react";
+import Header from "./Header";
+import TodoList from "./TodoList";
 import Background from "./Background";
 
 function App() {
@@ -8,9 +8,7 @@ function App() {
   const savedThemes = localStorage.getItem("themes");
   const [inputValue, setInputValue] = useState("");
   const [todo, setTodo] = useState(savedTodo ? JSON.parse(savedTodo) : []);
-  const [theme, setTheme] = useState(
-    savedThemes ? JSON.parse(savedThemes) : "light"
-  );
+  const [theme, setTheme] = useState(savedThemes ? JSON.parse(savedThemes) : "light");
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todo));
