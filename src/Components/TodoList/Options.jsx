@@ -1,11 +1,14 @@
-function Options({ length, clearAllTodos }) {
-  const handleClick = () => {
-    clearAllTodos([]);
-  };
+import React, { useContext } from "react";
+import { TodosContext } from "../App";
+
+function Options({ setTodos }) {
+  const todos = useContext(TodosContext);
+
+  const handleClick = () => setTodos([]);
 
   return (
     <div className="text-light-gray text-lg p-5 flex justify-between relative">
-      {length > 1 ? <span>{`${length} items left`}</span> : <span>{`${length} item left`}</span>}
+      {todos.length > 1 ? <span>{`${todos.length} items left`}</span> : <span>{`${todos.length} item left`}</span>}
       <div className="main-options">
         <button className="text-active-option">All</button>
         <button className="px-5 options">Active</button>

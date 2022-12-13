@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import mobileBg from "../Images/bg-mobile-light.jpg";
 import darkMobileBg from "../Images/bg-mobile-dark.jpg";
 import desktopBg from "../Images/bg-desktop-light.jpg";
