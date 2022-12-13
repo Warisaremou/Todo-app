@@ -4,35 +4,29 @@ import TodoList from "./TodoList";
 import Background from "./Background";
 
 function App() {
-  const savedTodo = localStorage.getItem("todos");
-  const savedThemes = localStorage.getItem("themes");
-  const [inputValue, setInputValue] = useState("");
-  const [todo, setTodo] = useState(savedTodo ? JSON.parse(savedTodo) : []);
-  const [theme, setTheme] = useState(savedThemes ? JSON.parse(savedThemes) : "light");
+  const Todos = JSON.parse(localStorage.getItem("todos")) || [];
+  const Theme = localStorage.getItem("theme") || "light";
+
+  const [todos, setTodos] = useState(Todos);
+  const [theme, setTheme] = useState(Theme);
 
   useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todo));
-  }, [todo]);
-  useEffect(() => {
-    if (theme === "light") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-    localStorage.setItem("themes", JSON.stringify(theme));
+    theme === "light"
+      ? document.documentElement.classList.add("dark")
+      : document.documentElement.classList.remove("dark");
+
+    localStorage.setItem("theme", theme);
   }, [theme]);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   return (
     <div className="font-josefin relative">
       <div className="max-w-screen-md mx-auto pt-5 px-5 md:px-14">
-        <Header
-          inputValue={inputValue}
-          setInputValue={setInputValue}
-          setTodo={setTodo}
-          theme={theme}
-          setTheme={setTheme}
-        />
-        <TodoList todo={todo} setTodo={setTodo} />
+        <Header setTodos={setTodos} theme={theme} setTheme={setTheme} />
+        <TodoList todos={todos} setTodos={setTodos} />
       </div>
       <div className="layout">
         <Background theme={theme} />
