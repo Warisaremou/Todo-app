@@ -1,46 +1,53 @@
-import Header from "./Header/Header";
-import TodoList from "./TodoList/TodoList";
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
+import Header from "./Header";
+import TodoList from "./TodoList";
 import Background from "./Background";
 
+// Get the todos from local storage
+const Todos = JSON.parse(localStorage.getItem("todos")) || [];
+
+// Get the theme from local storage
+const Theme = localStorage.getItem("theme") || "light";
+
+// Create a context for the theme
+export const ThemeContext = createContext(Theme);
+
+// Create a context for the todos
+export const TodosContext = createContext(Todos);
+
 function App() {
-  const savedTodo = localStorage.getItem("todos");
-  const savedThemes = localStorage.getItem("themes");
-  const [inputValue, setInputValue] = useState("");
-  const [todo, setTodo] = useState(savedTodo ? JSON.parse(savedTodo) : []);
-  const [theme, setTheme] = useState(
-    savedThemes ? JSON.parse(savedThemes) : "light"
-  );
+  const [todos, setTodos] = useState(Todos);
+  const [theme, setTheme] = useState(Theme);
 
   useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todo));
-  }, [todo]);
-  useEffect(() => {
-    if (theme === "light") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-    localStorage.setItem("themes", JSON.stringify(theme));
+    theme === "light"
+      ? document.documentElement.classList.add("dark")
+      : document.documentElement.classList.remove("dark");
+
+    localStorage.setItem("theme", theme);
   }, [theme]);
 
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
   return (
-    <div className="font-josefin relative">
-      <div className="max-w-screen-md mx-auto pt-5 px-5 md:px-14">
-        <Header
-          inputValue={inputValue}
-          setInputValue={setInputValue}
-          setTodo={setTodo}
-          theme={theme}
-          setTheme={setTheme}
-        />
-        <TodoList todo={todo} setTodo={setTodo} />
-      </div>
-      <div className="layout">
-        <Background theme={theme} />
-      </div>
-      <div className="app-bg"></div>
-    </div>
+    <>
+      <ThemeContext.Provider value={theme}>
+        <div className="font-josefin relative">
+          <div className="max-w-screen-md mx-auto pt-5 px-5 md:px-14">
+            <TodosContext.Provider value={todos}>
+              <Header setTodos={setTodos} setTheme={setTheme} />
+              <TodoList setTodos={setTodos} />
+            </TodosContext.Provider>
+          </div>
+          <div className="layout">
+            <Background />
+          </div>
+          <div className="app-bg"></div>
+        </div>
+      </ThemeContext.Provider>
+    </>
   );
 }
 
