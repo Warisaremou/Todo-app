@@ -8,9 +8,7 @@ function App() {
   const savedThemes = localStorage.getItem("themes");
   const [inputValue, setInputValue] = useState("");
   const [todo, setTodo] = useState(savedTodo ? JSON.parse(savedTodo) : []);
-  const [theme, setTheme] = useState(
-    savedThemes ? JSON.parse(savedThemes) : "light"
-  );
+  const [theme, setTheme] = useState(savedThemes ? JSON.parse(savedThemes) : "light");
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todo));
@@ -30,11 +28,17 @@ function App() {
         <Header
           inputValue={inputValue}
           setInputValue={setInputValue}
+          todo={todo}
           setTodo={setTodo}
           theme={theme}
           setTheme={setTheme}
         />
-        <TodoList todo={todo} setTodo={setTodo} />
+        {todo.length > 0 && <TodoList todo={todo} setTodo={setTodo} />}
+        {
+          (todo.length <= 0 && (
+            <p className="text-center text-gray-200 dark:text-gray-400 text-2xl md:text-4xl font-bold">No todos yet</p>
+          ))
+        }
       </div>
       <div className="layout">
         <Background theme={theme} />
