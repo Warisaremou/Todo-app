@@ -2,13 +2,15 @@ import React from "react";
 import { BrightnessLowFill } from "react-bootstrap-icons";
 import { MoonFill } from "react-bootstrap-icons";
 
-function Header({ inputValue, setInputValue, setTodo, theme, setTheme }) {
+function Header({ inputValue, setInputValue, todo, setTodo, theme, setTheme }) {
   function keyPressed(e) {
     if (e.keyCode === 13) {
       if (inputValue === "") {
         alert("Please enter a todo");
       } else {
-        setTodo((currentInput) => [...currentInput, inputValue]);
+        let num = todo.length + 1;
+        let newTodo = { id: num, text: inputValue, completed: false };
+        setTodo([...todo, newTodo]);
         setInputValue("");
       }
       // console.log(inputValue)
