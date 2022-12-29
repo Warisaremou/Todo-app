@@ -4,60 +4,55 @@ import Options from "../Options/Options";
 import { useState } from "react";
 
 function TodoList({ todo, setTodo }) {
-  const [isCompleted, setIsCompleted] = useState(false);
-  // const [completedTodo, setCompletedTodo] = useState([])
+  const [completedTodo, setCompletedTodo] = useState([]);
 
-  function markAsCompleted(e, index) {
-    const dataIndex = e.currentTarget.dataset.index;
-    console.log(dataIndex, index);
-    console.log(e);
-    if (dataIndex == index) {
-      // if (e.currentTarget.classList.contains("completed")) {
-      //   console.log("yes");
-      //   e.currentTarget.classList.add('completed')
-      // } else {
-      //   console.log("no");
-      // }
-      isCompleted ? setIsCompleted(false) : setIsCompleted(true)
-    }
-  }
-
-  function deleteTodo(index) {
-    setTodo((currentTodo) => {
-      return currentTodo.filter((_, i) => i !== index);
+  // Mark as completed function
+  const markAsCompleted = (id) => {
+    const newTodo = todo.map((task) => {
+      if (task.id === id) {
+        return {
+          ...task,
+          completed: !task.completed,
+        };
+      }
+      return task;
     });
-  }
+    setTodo(newTodo);
+  };
+
+  // Delete todo function
+  const deleteTodo = (id) => {
+    const newTodo = todo.filter((task) => task.id !== id);
+    setTodo(newTodo);
+  };
 
   return (
     <div className="bg-white dark:bg-input-dark rounded-lg shadow-lg shadow-light-shadow dark:shadow-dark-shadow">
-      {todo.map((myTodo, index) => (
-        <div
-          key={index}
-          data-index={index}
-          className="todo py-5 border-b-2 dark:border-text-dark my-todo"
-        >
+      {todo.map((myTodo) => (
+        <div key={myTodo.id} className="todo py-5 border-b-2 dark:border-text-dark my-todo">
           <div className="px-3 flex justify-between items-center">
-            <div className="flex items-center">
-              <Check
-                data-index={`${index}`}
-                className={`check-btn ${isCompleted ? "completed" : null}`}
-                onClick={(e) => markAsCompleted(e, index)}
-              />
+            <div
+              className="flex items-center"
+              title="Completed"
+              onClick={() => markAsCompleted(myTodo.id)}
+            >
+              <Check className={`check-btn ${myTodo.completed && "completed"}`} />
               <p
                 className={`todo-content ${
-                  isCompleted ? "line-through" : null
+                  myTodo.completed && "line-through text-white dark:text-dark-gray"
                 }`}
               >
-                {myTodo.charAt(0).toUpperCase() + myTodo.slice(1)}
+                {myTodo.text.charAt(0).toUpperCase() + myTodo.text.slice(1)}
               </p>
             </div>
-            <div onClick={() => deleteTodo(index)}>
+            <div onClick={() => deleteTodo(myTodo.id)} title="Delete">
               <XLg className="clear-btn" />
             </div>
           </div>
         </div>
       ))}
       <Options todo={todo} setTodo={setTodo} />
+      {/* <p>Completed Tod : {completedTodo}</p> */}
     </div>
   );
 }
