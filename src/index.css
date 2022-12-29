@@ -24,12 +24,13 @@
 }
 
 .check-btn {
-  @apply relative text-2xl md:text-3xl text-white cursor-pointer border dark:border-gray-700 rounded-full 
+  @apply relative text-2xl md:text-3xl text-white dark:text-input-dark cursor-pointer border dark:border-gray-700 rounded-full 
   hover:border-active-option dark:hover:border-active-option transition-colors ease-in duration-200;
 }
 
-.completed {
-  background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+.check-btn.completed {
+  @apply dark:text-white;
+  background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%)) ;
 }
 
 .clear-btn {
